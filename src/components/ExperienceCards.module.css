@@ -1,0 +1,378 @@
+.list {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(19, 34, 59, 0.82), rgba(12, 21, 37, 0.86));
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  /* CSS-only entrance so the card is never controlled by the imperative
+     [data-reveal] system (whose class React would strip on re-render). */
+  animation: cardIn 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:hover,
+.expanded {
+  border-color: rgba(96, 165, 250, 0.38);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.2), 0 0 24px rgba(96, 165, 250, 0.06);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+/* Subtle accent rail on the expanded card for depth */
+.expanded::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent), transparent);
+  opacity: 0.55;
+}
+
+.trigger {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 42px minmax(0, 1fr) 38px;
+  align-items: center;
+  gap: 16px;
+  border: 0;
+  padding: 21px 24px;
+  background: transparent;
+  color: var(--foreground);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
+  border-radius: inherit;
+}
+
+.index {
+  align-self: stretch;
+  display: grid;
+  place-items: center;
+  border-right: 1px solid var(--line);
+  color: var(--accent);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+}
+
+.heading {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.period {
+  color: var(--accent);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.role {
+  overflow-wrap: anywhere;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.company {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.indicator {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1;
+  transition: color 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.trigger:hover .indicator,
+.expanded .indicator {
+  border-color: rgba(96, 165, 250, 0.35);
+  background: rgba(96, 165, 250, 0.08);
+  color: var(--accent);
+}
+
+/* ── Expanded panel ──────────────────────────────────────────────
+   The panel is conditionally rendered in the DOM (only when open), so
+   it is never a "hidden but present" element. The header (.trigger) is
+   always rendered above it and stays visible. The animation below only
+   runs the content in on mount; it never controls whether content exists. */
+.panel {
+  border-top: 1px solid var(--line);
+  padding: 22px 24px 24px 82px;
+  animation: panelIn 320ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Sections (Responsibilities / Dokumentasi) ───────────────── */
+.section {
+  margin-bottom: 26px;
+}
+
+.subheading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 12px;
+  color: var(--foreground);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.subheadingBar {
+  width: 14px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.55);
+}
+
+.responsibilities {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.responsibilities li {
+  position: relative;
+}
+
+.responsibilities li::before {
+  content: "-";
+  position: absolute;
+  left: -14px;
+  color: var(--accent);
+}
+
+.emptyNote {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* ── Dokumentasi gallery: 3 in a row on desktop, reflow on mobile ── */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.photoFrame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 10px;
+  background: var(--card-bg);
+}
+
+.photoImage {
+  object-fit: cover;
+  transition: transform 360ms ease;
+}
+
+.photoFrame:hover .photoImage {
+  transform: scale(1.04);
+}
+
+/* Placeholder treated as an intentional UI component, not an empty box */
+.photoPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px dashed rgba(148, 163, 184, 0.26);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(96, 165, 250, 0.06), transparent 55%),
+    repeating-linear-gradient(135deg, rgba(148, 163, 184, 0.03) 0 1px, transparent 1px 14px),
+    rgba(8, 15, 27, 0.34);
+  color: var(--muted);
+  transition: border-color 220ms ease, background 220ms ease, transform 220ms ease;
+}
+
+.photoFrame:hover .photoPlaceholder {
+  border-color: rgba(96, 165, 250, 0.4);
+  background:
+    linear-gradient(135deg, rgba(96, 165, 250, 0.1), transparent 55%),
+    rgba(8, 15, 27, 0.34);
+  transform: translateY(-2px);
+}
+
+.placeholderMark {
+  width: 30px;
+  height: 23px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  border-radius: 5px;
+  position: relative;
+}
+
+.placeholderMark::before {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(148, 163, 184, 0.6);
+  content: "";
+}
+
+.placeholderMark::after {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  left: 3px;
+  height: 9px;
+  background: linear-gradient(145deg, transparent 43%, rgba(148, 163, 184, 0.5) 45% 55%, transparent 57%);
+  content: "";
+}
+
+.placeholderText {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Back / Close ────────────────────────────────────────────── */
+.panelFooter {
+  margin-top: 4px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 9px 15px;
+  background: rgba(15, 26, 46, 0.5);
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 220ms ease, border-color 220ms ease, background 220ms ease, transform 220ms ease;
+}
+
+.backButton:hover {
+  color: var(--accent);
+  border-color: rgba(96, 165, 250, 0.4);
+  background: rgba(96, 165, 250, 0.06);
+  transform: translateX(-3px);
+}
+
+.backButton:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .list {
+    gap: 11px;
+  }
+
+  .trigger {
+    grid-template-columns: 32px minmax(0, 1fr) 34px;
+    gap: 11px;
+    padding: 18px 15px;
+  }
+
+  .role {
+    font-size: 17px;
+  }
+
+  .panel {
+    padding: 18px 15px 18px;
+  }
+}
+
+@media (max-width: 460px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .indicator,
+  .photoImage,
+  .photoPlaceholder,
+  .backButton {
+    transition: none;
+  }
+
+  .panel,
+  .card {
+    animation: none;
+  }
+
+  .card:hover,
+  .photoFrame:hover .photoImage,
+  .photoFrame:hover .photoPlaceholder,
+  .backButton:hover {
+    transform: none;
+  }
+}
