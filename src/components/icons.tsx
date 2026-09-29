@@ -51,6 +51,30 @@ export function EmailIcon({ title, ...props }: IconProps) {
   );
 }
 
+export function InstagramIcon({ title, ...props }: IconProps) {
+  return (
+    <svg {...baseProps(title)} {...props}>
+      {title ? <title>{title}</title> : null}
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function LineIcon({ title, ...props }: IconProps) {
+  return (
+    <svg {...baseProps(title)} {...props}>
+      {title ? <title>{title}</title> : null}
+      <path d="M21 10.5c0-4.14-4.15-7.5-9-7.5s-9 3.36-9 7.5c0 3.71 3.29 6.82 7.73 7.41.3.06.71.2.81.46.09.24.06.6.03.84 0 0-.11.65-.13.79-.04.24-.19.93.82.51 1.01-.43 5.42-3.19 7.4-5.47C20.4 14.63 21 12.67 21 10.5Z" />
+      <path
+        d="M7.2 8.9v3.6M9.4 12.5H7.2M11 8.9v3.6M13 8.9v3.6l2.4-3.6v3.6M16.9 8.9h1.9M16.9 12.5h1.9M16.9 8.9v3.6"
+        strokeWidth="1.1"
+      />
+    </svg>
+  );
+}
+
 export function ArrowUpRightIcon({ title, ...props }: IconProps) {
   return (
     <svg {...baseProps(title)} {...props}>

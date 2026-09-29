@@ -12,18 +12,11 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     title: "Libraries",
-    skills: [
-      "scikit-learn",
-      "Ultralytics YOLO",
-      "MediaPipe",
-      "OpenCV",
-      "NumPy",
-      "Pandas",
-    ],
+    skills: ["NumPy", "Pandas", "scikit-learn", "OpenCV", "MediaPipe"],
   },
   {
     title: "Frameworks",
-    skills: ["React", "Flask", "Streamlit", "Gradio"],
+    skills: ["React", "Flask", "Streamlit", "Gradio", "Ultralytics YOLO"],
   },
   {
     title: "Tools & Platforms",

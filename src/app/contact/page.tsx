@@ -1,8 +1,25 @@
 import type { Metadata } from "next";
 import { profile } from "@/data/profile";
 import { publicFileExists } from "@/lib/assets";
-import { SocialLinks } from "@/components/SocialLinks";
-import { EmailIcon, DownloadIcon, ArrowUpRightIcon } from "@/components/icons";
+import {
+  GitHubIcon,
+  LinkedInIcon,
+  InstagramIcon,
+  LineIcon,
+  EmailIcon,
+  DownloadIcon,
+  ArrowUpRightIcon,
+} from "@/components/icons";
+
+// Contact-page social/contact channels. Kept local to this page so the shared
+// SocialLinks component (used on Home/About) stays unchanged.
+const contactLinks = [
+  { key: "github", href: "https://github.com/Vinn673", label: "GitHub", icon: <GitHubIcon />, external: true },
+  { key: "linkedin", href: "https://www.linkedin.com/in/marvin-adriano", label: "LinkedIn", icon: <LinkedInIcon />, external: true },
+  { key: "instagram", href: "https://www.instagram.com/marvin_adriano/", label: "Instagram", icon: <InstagramIcon />, external: true },
+  { key: "line", href: "https://line.me/ti/p/2DHJhFQivF", label: "LINE", icon: <LineIcon />, external: true },
+  { key: "email", href: "mailto:marvinadr1703@gmail.com", label: "Email", icon: <EmailIcon />, external: false },
+];
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -20,9 +37,9 @@ export default function ContactPage() {
           <span>Contact</span>
         </div>
         <div data-reveal>
-          <p className="eyebrow">Have something in mind?</p>
+          <p className="eyebrow">Let&apos;s connect.</p>
           <h2 id="contact-title">
-            Let&apos;s build something worthwhile.
+            I&apos;m open to new opportunities.
           </h2>
           <p className="contact-intro">
             Open to internship opportunities, collaborations, and new
@@ -35,7 +52,26 @@ export default function ContactPage() {
             <ArrowUpRightIcon aria-hidden="true" />
           </a>
 
-          <SocialLinks variant="warm" className="contact-card" />
+          <div
+            className="icon-links contact-card"
+            aria-label="Social and contact links"
+          >
+            {contactLinks.map((link) => (
+              <a
+                key={link.key}
+                className="icon-link on-warm"
+                href={link.href}
+                aria-label={link.label}
+                title={link.label}
+                {...(link.external
+                  ? { target: "_blank", rel: "noreferrer" }
+                  : {})}
+              >
+                {link.icon}
+                <span>{link.label}</span>
+              </a>
+            ))}
+          </div>
 
           {cvAvailable ? (
             <div className="contact-card">
