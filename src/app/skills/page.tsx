@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { skillCategories } from "@/data/skills";
+import { skillCategories, softSkills } from "@/data/skills";
 import { SkillCard } from "@/components/SkillCard";
+import { SparkIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "Skills",
@@ -30,6 +31,22 @@ export default function SkillsPage() {
             {skillCategories.map((category) => (
               <SkillCard key={category.title} category={category} />
             ))}
+          </div>
+
+          <div className="soft-skills" data-reveal>
+            <div className="soft-skills-head">
+              <span className="skill-group-icon" aria-hidden="true">
+                <SparkIcon />
+              </span>
+              <h3>Soft Skills</h3>
+            </div>
+            <ul className="soft-skill-tags">
+              {softSkills.map((skill) => (
+                <li className="soft-skill-tag" key={skill}>
+                  {skill}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

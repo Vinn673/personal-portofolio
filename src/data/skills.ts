@@ -30,3 +30,15 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
 ];
+
+// Soft skills — rendered as pill badges on the Skills page and previewed on Home.
+// Kept separate from the technical categories above so both stay easy to edit.
+export const softSkills: string[] = [
+  "Teamwork",
+  "Leadership",
+  "Communication",
+  "Problem Solving",
+  "Adaptability",
+  "Critical Thinking",
+  "Time Management",
+];

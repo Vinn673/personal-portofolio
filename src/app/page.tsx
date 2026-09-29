@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { profile } from "@/data/profile";
 import { projects } from "@/data/projects";
-import { skillCategories } from "@/data/skills";
+import { skillCategories, softSkills } from "@/data/skills";
 import { Button } from "@/components/Button";
 import { SocialLinks } from "@/components/SocialLinks";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -124,7 +124,7 @@ export default function Home() {
             <h2 id="home-skills">What I Work With</h2>
           </div>
           <Link className="see-all" href="/skills">
-            All Skills <ArrowRightIcon />
+            View All Skills <ArrowRightIcon />
           </Link>
         </div>
         <div className="preview-grid">
@@ -141,6 +141,21 @@ export default function Home() {
               </ul>
             </div>
           ))}
+        </div>
+        <div className="soft-skills soft-skills-preview" data-reveal>
+          <div className="soft-skills-head">
+            <span className="mini-card-icon" aria-hidden="true">
+              <SparkIcon />
+            </span>
+            <h3>Soft Skills</h3>
+          </div>
+          <ul className="soft-skill-tags">
+            {softSkills.map((skill) => (
+              <li className="soft-skill-tag" key={skill}>
+                {skill}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

@@ -15,6 +15,11 @@ export type Experience = {
   /** Responsibility bullet points for this experience. */
   responsibilities: string[];
   /**
+   * Short skill/attribute tags relevant to THIS experience (rendered as pills).
+   * Choose tags that fit the actual activity — keep them concise and specific.
+   */
+  skills: string[];
+  /**
    * Real documentation photos for this experience.
    * Add local paths under public/, e.g. "/experience/exp-2-1.jpg".
    * When this list has entries, real photos are shown instead of placeholders.
@@ -42,6 +47,12 @@ export const experiences: Experience[] = [
       "Conducted socialization activities on religious tolerance and community harmony, including discussions with the temple community about mutual respect, diversity, and peaceful coexistence.",
       "Participated in social service activities, including distributing basic necessities and snacks and joining a shared meal to strengthen social solidarity and interaction among people from different backgrounds.",
     ],
+    skills: [
+      "Communication",
+      "Social Responsibility",
+      "Community Engagement",
+      "Teamwork",
+    ],
     photos: [
       "/experience/experience-1-1.jpg",
       "/experience/experience-1-2.jpg",
@@ -59,6 +70,12 @@ export const experiences: Experience[] = [
       "Conducted field observations to identify environmental conditions and water infiltration issues in Manyaran Village.",
       "Contributed to educating local residents about biopores, organic waste management, and environmental conservation.",
       "Assisted with the hands-on installation of biopore infiltration holes together with local residents and the PKK community.",
+    ],
+    skills: [
+      "Environmental Awareness",
+      "Community Engagement",
+      "Teamwork",
+      "Problem Solving",
     ],
     photos: [
       "/experience/experience-2-1.jpg",
@@ -78,6 +95,12 @@ export const experiences: Experience[] = [
       "Collaborated with the team to prepare educational materials, games, and rewards for the students.",
       "Assisted in conducting the socialization and interactive games for Grade 12 students at SMK Dr. Tjipto Semarang.",
     ],
+    skills: [
+      "Public Speaking",
+      "Communication",
+      "Leadership",
+      "Teamwork",
+    ],
     photos: [
       "/experience/experience-3-1.jpg",
       "/experience/experience-3-2.JPG",
@@ -96,6 +119,11 @@ export const experiences: Experience[] = [
       "Collected litter along the CFD area using provided waste bags to help keep the surroundings clean.",
       "Contributed to collecting approximately two bags of waste until the designated area was cleaned.",
     ],
+    skills: [
+      "Environmental Awareness",
+      "Community Engagement",
+      "Teamwork",
+    ],
     photos: [
       "/experience/experience-4-1.png",
       "/experience/experience4-2.png",
@@ -112,6 +140,12 @@ export const experiences: Experience[] = [
       "Participated in an anti-bullying awareness program at SDN Krobokan, Semarang, together with the team.",
       "Contributed to delivering educational activities that encouraged students to understand the importance of kindness, respect, and positive interactions.",
       "Engaged with students through interactive activities, including singing and group activities, to create an enjoyable and supportive learning environment.",
+    ],
+    skills: [
+      "Public Speaking",
+      "Communication",
+      "Social Responsibility",
+      "Teamwork",
     ],
     photos: [
       "/experience/experience-5-1.jpg",
@@ -130,6 +164,12 @@ export const experiences: Experience[] = [
       "Participated in an ocean beach cleanup activity at Marina Beach, Semarang, together with the team.",
       "Collected and sorted litter along the beach area to help maintain a cleaner coastal environment.",
       "Worked collaboratively with team members to clean the designated beach area and contribute to environmental conservation.",
+    ],
+    skills: [
+      "Environmental Awareness",
+      "Community Engagement",
+      "Teamwork",
+      "Collaboration",
     ],
     photos: [
       "/experience/experience6-1.png",
@@ -150,6 +190,12 @@ export const experiences: Experience[] = [
       "Assisted with event operations involving lighting, sound, and multimedia equipment.",
       "Coordinated with team members to ensure smooth event execution and handle operational issues.",
     ],
+    skills: [
+      "Event Management",
+      "Coordination",
+      "Teamwork",
+      "Adaptability",
+    ],
     // Berlian intentionally has no documentation gallery.
     photos: [],
     documentationSlots: 0,
@@ -164,6 +210,12 @@ export const experiences: Experience[] = [
       "Assisted in ensuring the smooth execution of the DBL event.",
       "Directed and coordinated supporters in the field during the event.",
       "Prepared and transported necessary logistics for supporters.",
+    ],
+    skills: [
+      "Event Management",
+      "Coordination",
+      "Communication",
+      "Teamwork",
     ],
     photos: [],
     documentationSlots: 0,

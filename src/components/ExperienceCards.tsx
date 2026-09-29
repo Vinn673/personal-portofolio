@@ -19,6 +19,7 @@ export function ExperienceCards({ experiences }: ExperienceCardsProps) {
         const panelId = `experience-panel-${experience.id}`;
 
         const hasResponsibilities = experience.responsibilities.length > 0;
+        const hasSkills = experience.skills.length > 0;
         const hasPhotos = experience.photos.length > 0;
         const slots = experience.documentationSlots ?? 0;
         const showDocumentation = hasPhotos || slots > 0;
@@ -77,6 +78,23 @@ export function ExperienceCards({ experiences }: ExperienceCardsProps) {
                     </p>
                   )}
                 </section>
+
+                {/* Skills / attributes */}
+                {hasSkills && (
+                  <section className={styles.section}>
+                    <h4 className={styles.subheading}>
+                      <span className={styles.subheadingBar} aria-hidden="true" />
+                      Skills
+                    </h4>
+                    <ul className={styles.skillTags}>
+                      {experience.skills.map((skill) => (
+                        <li className={styles.skillTag} key={skill}>
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                )}
 
                 {/* Dokumentasi — hidden entirely when opted out (e.g. Berlian) */}
                 {showDocumentation && (

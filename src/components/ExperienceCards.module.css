@@ -202,6 +202,36 @@
   font-style: italic;
 }
 
+/* ── Skill / attribute tags (blue pills, match existing theme) ── */
+.skillTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skillTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.08);
+  color: var(--accent);
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+
+.skillTag:hover {
+  background: rgba(96, 165, 250, 0.15);
+  border-color: rgba(96, 165, 250, 0.5);
+  transform: translateY(-1px);
+}
+
 /* ── Dokumentasi gallery: 3 in a row on desktop, reflow on mobile ── */
 .gallery {
   display: grid;
@@ -369,10 +399,15 @@
     animation: none;
   }
 
+  .skillTag {
+    transition: none;
+  }
+
   .card:hover,
   .photoFrame:hover .photoImage,
   .photoFrame:hover .photoPlaceholder,
-  .backButton:hover {
+  .backButton:hover,
+  .skillTag:hover {
     transform: none;
   }
 }
