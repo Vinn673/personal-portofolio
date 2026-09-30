@@ -8,11 +8,11 @@ export type SkillCategory = {
 export const skillCategories: SkillCategory[] = [
   {
     title: "Languages",
-    skills: ["Python", "JavaScript", "HTML", "CSS"],
+    skills: ["Python", "JavaScript", "C++", "HTML", "CSS"],
   },
   {
     title: "Libraries",
-    skills: ["NumPy", "Pandas", "scikit-learn", "OpenCV", "MediaPipe"],
+    skills: ["NumPy", "Pandas", "Matplotlib", "scikit-learn", "OpenCV", "MediaPipe"],
   },
   {
     title: "Frameworks",
@@ -23,10 +23,12 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       "Git",
       "GitHub",
+      "VS Code",
+      "Jupyter Notebook",
       "Firebase",
-      "Cloud Firestore",
-      "Firebase Hosting",
       "Hugging Face",
+      "Figma",
+      "Canva",
     ],
   },
 ];
