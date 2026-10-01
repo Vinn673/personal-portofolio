@@ -7,7 +7,9 @@ import { join } from "node:path";
 
 /** Resolve a public-relative path (e.g. "/cv/file.pdf") to an absolute disk path. */
 function publicPath(relativePath: string): string {
-  const clean = relativePath.replace(/^\/+/, "");
+  // Decode URL-encoded segments (e.g. %20) so the on-disk filename is matched.
+  const decoded = decodeURIComponent(relativePath);
+  const clean = decoded.replace(/^\/+/, "");
   return join(process.cwd(), "public", clean);
 }
 

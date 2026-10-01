@@ -9,9 +9,9 @@ export const profile = {
   email: "marvinadr1703@gmail.com",
   github: "https://github.com/Vinn673",
   linkedin: "https://www.linkedin.com/in/marvin-adriano",
-  // The CV download button only appears if this file actually exists on disk.
-  // Place the real PDF at: public/cv/Marvin-Adriano-CV.pdf
-  cvUrl: "/cv/Marvin-Adriano-CV.pdf",
+  // Points to the actual CV in public/cv/ (spaces URL-encoded so the path resolves).
+  // Existing file: public/cv/CV - Marvin Adriano Rusdianto.pdf
+  cvUrl: "/cv/CV%20-%20Marvin%20Adriano%20Rusdianto.pdf",
   // Profile photo. The ProfileImage component falls back gracefully if missing.
   // Place the real photo at: public/profile/marvin.jpg
   photoUrl: "/profile/marvin.jpg",

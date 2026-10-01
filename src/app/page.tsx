@@ -121,7 +121,7 @@ export default function Home() {
             <p className="kicker">
               <SparkIcon /> Skills
             </p>
-            <h2 id="home-skills">What I Work With</h2>
+            <h2 id="home-skills">Technologies I Use &amp; Learn</h2>
           </div>
           <Link className="see-all" href="/skills">
             View All Skills <ArrowRightIcon />
