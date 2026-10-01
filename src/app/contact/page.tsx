@@ -18,7 +18,14 @@ const contactLinks = [
   { key: "linkedin", href: "https://www.linkedin.com/in/marvin-adriano", label: "LinkedIn", icon: <LinkedInIcon />, external: true },
   { key: "instagram", href: "https://www.instagram.com/marvin_adriano/", label: "Instagram", icon: <InstagramIcon />, external: true },
   { key: "line", href: "https://line.me/ti/p/2DHJhFQivF", label: "LINE", icon: <LineIcon />, external: true },
-  { key: "email", href: "mailto:marvinadr1703@gmail.com", label: "Email", icon: <EmailIcon />, external: false },
+  { key: "email", href: "mailto:marvin.rusdianto17@gmail.com", label: "Email", icon: <EmailIcon />, external: false },
+];
+
+// Email addresses displayed on the Contact page (page-local, so the shared
+// profile.email used elsewhere is left unchanged).
+const contactEmails = [
+  "marvin.rusdianto17@gmail.com",
+  "marvin.rusdianto@binus.ac.id",
 ];
 
 export const metadata: Metadata = {
@@ -46,11 +53,13 @@ export default function ContactPage() {
             experiences. Feel free to connect with me through the channels below.
           </p>
 
-          <a className="contact-email" href={`mailto:${profile.email}`}>
-            <EmailIcon aria-hidden="true" />
-            {profile.email}
-            <ArrowUpRightIcon aria-hidden="true" />
-          </a>
+          {contactEmails.map((email) => (
+            <a key={email} className="contact-email" href={`mailto:${email}`}>
+              <EmailIcon aria-hidden="true" />
+              {email}
+              <ArrowUpRightIcon aria-hidden="true" />
+            </a>
+          ))}
 
           <div
             className="icon-links contact-card"
