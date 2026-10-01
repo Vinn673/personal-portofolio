@@ -16,7 +16,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     title: "Frameworks",
-    skills: ["React", "Flask", "Streamlit", "Gradio", "Ultralytics YOLO"],
+    skills: ["React", "Flask", "Streamlit", "Next.js", "Ultralytics YOLO"],
   },
   {
     title: "Tools & Platforms",
@@ -25,7 +25,6 @@ export const skillCategories: SkillCategory[] = [
       "GitHub",
       "VS Code",
       "Jupyter Notebook",
-      "Firebase",
       "Hugging Face",
       "Figma",
       "Canva",
