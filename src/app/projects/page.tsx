@@ -20,9 +20,9 @@ export default function ProjectsPage() {
           <div data-reveal>
             <h2 id="projects-title">Selected group projects.</h2>
             <p>
-              A collection of collaborative projects I've worked on throughout
-              my academic journey, covering AI, machine learning, computer
-              vision, and web development.
+              A collection of collaborative projects I&apos;ve worked on
+              throughout my academic journey, covering AI, machine learning,
+              computer vision, and web development.
             </p>
           </div>
         </div>
