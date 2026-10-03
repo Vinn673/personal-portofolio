@@ -6,6 +6,7 @@ import {
   LinkedInIcon,
   InstagramIcon,
   LineIcon,
+  WhatsAppIcon,
   EmailIcon,
   DownloadIcon,
   ArrowUpRightIcon,
@@ -18,6 +19,7 @@ const contactLinks = [
   { key: "linkedin", href: "https://www.linkedin.com/in/marvin-adriano", label: "LinkedIn", icon: <LinkedInIcon />, external: true },
   { key: "instagram", href: "https://www.instagram.com/marvin_adriano/", label: "Instagram", icon: <InstagramIcon />, external: true },
   { key: "line", href: "https://line.me/ti/p/2DHJhFQivF", label: "LINE", icon: <LineIcon />, external: true },
+  { key: "whatsapp", href: "https://wa.me/62895391667628", label: "WhatsApp", icon: <WhatsAppIcon />, external: true },
   { key: "email", href: "mailto:marvin.rusdianto17@gmail.com", label: "Email", icon: <EmailIcon />, external: false },
 ];
 
