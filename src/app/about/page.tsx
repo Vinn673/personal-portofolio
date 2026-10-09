@@ -41,11 +41,13 @@ export default function AboutPage() {
                 University, specializing in Intelligent Systems (AI). I am
                 interested in AI Engineering and frontend development, and I
                 enjoy exploring how technology can be turned into useful and
-                practical applications. I continuously develop my skills through
-                coursework, hands-on projects, and independent learning. I am
-                currently open to internship opportunities where I can gain
-                practical experience, contribute to real-world projects, and
-                continue growing as a developer.
+                practical applications. I continuously develop my technical
+                skills through coursework, hands-on projects, and independent
+                learning. I value teamwork, adaptability, effective time
+                management, and problem-solving when working on projects and
+                collaborating with others. I am currently open to internship
+                opportunities where I can gain practical experience, contribute
+                to real-world projects, and continue growing as a developer.
               </p>
               <p className="about-location">
                 <PinIcon aria-hidden="true" /> {profile.location}

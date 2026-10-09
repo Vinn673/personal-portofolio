@@ -36,9 +36,6 @@ export default function Home() {
           <p className="hero-specialization" data-reveal data-reveal-delay="160">
             {profile.title}
           </p>
-          <p className="hero-role" data-reveal data-reveal-delay="220">
-            {profile.role}
-          </p>
           <p className="hero-intro" data-reveal data-reveal-delay="300">
             {profile.intro}
           </p>
