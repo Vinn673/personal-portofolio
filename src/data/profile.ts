@@ -10,8 +10,8 @@ export const profile = {
   github: "https://github.com/Vinn673",
   linkedin: "https://www.linkedin.com/in/marvin-adriano",
   // Points to the actual CV in public/cv/ (spaces URL-encoded so the path resolves).
-  // Existing file: public/cv/CV - Marvin Adriano Rusdianto.pdf
-  cvUrl: "/cv/CV%20-%20Marvin%20Adriano%20Rusdianto.pdf",
+  // Existing file: public/cv/CV -- Marvin Adriano Rusdianto.pdf
+  cvUrl: "/cv/CV%20--%20Marvin%20Adriano%20Rusdianto.pdf",
   // Profile photo. The ProfileImage component falls back gracefully if missing.
   // Place the real photo at: public/profile/marvin.jpg
   photoUrl: "/profile/marvin.jpg",
