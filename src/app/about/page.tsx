@@ -38,16 +38,17 @@ export default function AboutPage() {
             <div>
               <p>
                 I am a fifth-semester Computer Science undergraduate at BINUS
-                University, specializing in Intelligent Systems (AI). I am
-                interested in AI Engineering and frontend development, and I
-                enjoy exploring how technology can be turned into useful and
-                practical applications. I continuously develop my technical
-                skills through coursework, hands-on projects, and independent
-                learning. I value teamwork, adaptability, effective time
-                management, and problem-solving when working on projects and
-                collaborating with others. I am currently open to internship
-                opportunities where I can gain practical experience, contribute
-                to real-world projects, and continue growing as a developer.
+                University, specializing in Intelligent Systems (AI). I enjoy
+                exploring AI technologies, particularly Machine Learning and
+                Computer Vision, and developing web-based applications to solve
+                real-world problems through practical and user-friendly
+                solutions. Through coursework, hands-on projects, and
+                independent learning, I continue to strengthen my technical
+                skills and explore different areas of software development. I
+                value teamwork, adaptability, and problem-solving, and I am
+                currently seeking internship opportunities where I can apply my
+                skills, contribute to real-world projects, and grow as a
+                developer.
               </p>
               <p className="about-location">
                 <PinIcon aria-hidden="true" /> {profile.location}

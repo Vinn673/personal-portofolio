@@ -18,7 +18,7 @@ export const profile = {
 
   // Short intro used on the home hero.
   intro:
-    "Computer Science undergraduate at BINUS University, specializing in Intelligent Systems, with an interest in AI Engineering and frontend development.",
+    "Computer Science undergraduate at BINUS University, specializing in Intelligent Systems (AI). I enjoy exploring AI technologies and developing web based applications to build practical and user friendly solutions.",
 
   // Longer bio used on the About page (Bahasa Indonesia).
   bio:

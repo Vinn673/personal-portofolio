@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="container footer-wrap">
         <span>{profile.name}</span>
-        <span>AI Engineering / frontend development</span>
+        <span>Intelligent System</span>
         <span>
           {profile.location} / {year}
         </span>
