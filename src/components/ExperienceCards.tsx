@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
 import type { Experience } from "@/data/experience";
 import styles from "./ExperienceCards.module.css";
 
@@ -9,15 +6,20 @@ type ExperienceCardsProps = {
   experiences: Experience[];
 };
 
+/**
+ * Editorial experience list: a two-column layout (period on the left,
+ * role / company / responsibilities / documentation on the right) separated
+ * by subtle divider lines rather than large bordered cards.
+ *
+ * Responsibilities are shown directly — no expand/collapse. Documentation
+ * renders real photos when present, otherwise the configured number of
+ * replaceable placeholder slots (documentationSlots). An experience with
+ * neither photos nor slots (e.g. Berlian) shows no documentation section.
+ */
 export function ExperienceCards({ experiences }: ExperienceCardsProps) {
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-
   return (
-    <div className={styles.list}>
-      {experiences.map((experience, index) => {
-        const isExpanded = expandedId === experience.id;
-        const panelId = `experience-panel-${experience.id}`;
-
+    <ol className={styles.list}>
+      {experiences.map((experience) => {
         const hasResponsibilities = experience.responsibilities.length > 0;
         const hasSkills = experience.skills.length > 0;
         const hasPhotos = experience.photos.length > 0;
@@ -26,139 +28,83 @@ export function ExperienceCards({ experiences }: ExperienceCardsProps) {
         const docCount = hasPhotos ? experience.photos.length : slots;
 
         return (
-          <article
-            className={`${styles.card} ${isExpanded ? styles.expanded : ""}`}
-            key={experience.id}
-          >
-            {/* ── ALWAYS-VISIBLE HEADER ───────────────────────── */}
-            <button
-              className={styles.trigger}
-              type="button"
-              aria-expanded={isExpanded}
-              aria-controls={panelId}
-              onClick={() => setExpandedId(isExpanded ? null : experience.id)}
-            >
-              <span className={styles.index} aria-hidden="true">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className={styles.heading}>
-                {experience.period && (
-                  <span className={styles.period}>{experience.period}</span>
-                )}
-                <span className={styles.role} role="heading" aria-level={3}>
-                  {experience.role}
-                </span>
-                {experience.company && (
-                  <span className={styles.company}>{experience.company}</span>
-                )}
-              </span>
-              <span className={styles.indicator} aria-hidden="true">
-                {isExpanded ? "−" : "+"}
-              </span>
-            </button>
+          <li className={styles.entry} key={experience.id}>
+            {/* Left column — period / meta */}
+            <div className={styles.meta}>
+              {experience.period && (
+                <span className={styles.period}>{experience.period}</span>
+              )}
+            </div>
 
-            {/* ── EXPANDED CONTENT (only in the DOM when open) ── */}
-            {isExpanded && (
-              <div className={styles.panel} id={panelId}>
-                {/* Responsibilities */}
-                <section className={styles.section}>
-                  <h4 className={styles.subheading}>
-                    <span className={styles.subheadingBar} aria-hidden="true" />
-                    Responsibilities
-                  </h4>
-                  {hasResponsibilities ? (
-                    <ul className={styles.responsibilities}>
-                      {experience.responsibilities.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className={styles.emptyNote}>
-                      Detail jobdesk akan ditambahkan.
-                    </p>
-                  )}
-                </section>
+            {/* Right column — content */}
+            <div className={styles.content}>
+              <h4 className={styles.role}>{experience.role}</h4>
+              {experience.company && (
+                <p className={styles.company}>{experience.company}</p>
+              )}
 
-                {/* Skills / attributes */}
-                {hasSkills && (
-                  <section className={styles.section}>
-                    <h4 className={styles.subheading}>
-                      <span className={styles.subheadingBar} aria-hidden="true" />
-                      Skills
-                    </h4>
-                    <ul className={styles.skillTags}>
-                      {experience.skills.map((skill) => (
-                        <li className={styles.skillTag} key={skill}>
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
-                )}
+              {hasResponsibilities && (
+                <ul className={styles.responsibilities}>
+                  {experience.responsibilities.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              )}
 
-                {/* Dokumentasi — hidden entirely when opted out (e.g. Berlian) */}
-                {showDocumentation && (
-                  <section className={styles.section}>
-                    <h4 className={styles.subheading}>
-                      <span className={styles.subheadingBar} aria-hidden="true" />
-                      Documentation
-                    </h4>
-                    <div
-                      className={styles.gallery}
-                      aria-label={`Dokumentasi ${experience.role}`}
-                    >
-                      {Array.from({ length: docCount }).map((_, photoIndex) => {
-                        const photo = experience.photos[photoIndex];
-                        return (
-                          <div
-                            className={styles.photoFrame}
-                            key={`${experience.id}-doc-${photoIndex}`}
-                          >
-                            {photo ? (
-                              <Image
-                                className={styles.photoImage}
-                                src={photo}
-                                alt={`Dokumentasi ${experience.role} ${photoIndex + 1}`}
-                                fill
-                                sizes="(max-width: 640px) 100vw, (max-width: 1000px) 45vw, 220px"
-                              />
-                            ) : (
-                              <span
-                                className={styles.photoPlaceholder}
-                                role="img"
-                                aria-label={`Placeholder dokumentasi ${photoIndex + 1}`}
-                              >
-                                <span
-                                  className={styles.placeholderMark}
-                                  aria-hidden="true"
-                                />
-                                <span className={styles.placeholderText}>
-                                  Photo {photoIndex + 1}
-                                </span>
-                              </span>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </section>
-                )}
+              {hasSkills && (
+                <ul className={styles.skillTags} aria-label="Skills">
+                  {experience.skills.map((skill) => (
+                    <li className={styles.skillTag} key={skill}>
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              )}
 
-                {/* Close / Back */}
-                <div className={styles.panelFooter}>
-                  <button
-                    className={styles.backButton}
-                    type="button"
-                    onClick={() => setExpandedId(null)}
+              {showDocumentation && (
+                <div className={styles.documentation}>
+                  <p className={styles.docLabel}>Documentation</p>
+                  <div
+                    className={styles.gallery}
+                    aria-label={`Documentation for ${experience.role}`}
                   >
-                    <span aria-hidden="true">←</span> Back to Experiences
-                  </button>
+                    {Array.from({ length: docCount }).map((_, photoIndex) => {
+                      const photo = experience.photos[photoIndex];
+                      return (
+                        <div
+                          className={styles.photoFrame}
+                          key={`${experience.id}-doc-${photoIndex}`}
+                        >
+                          {photo ? (
+                            <Image
+                              className={styles.photoImage}
+                              src={photo}
+                              alt={`Documentation for ${experience.role} ${photoIndex + 1}`}
+                              fill
+                              sizes="(max-width: 640px) 50vw, (max-width: 1000px) 30vw, 220px"
+                            />
+                          ) : (
+                            <span
+                              className={styles.photoPlaceholder}
+                              role="img"
+                              aria-label={`Documentation placeholder ${photoIndex + 1}`}
+                            >
+                              <span
+                                className={styles.placeholderMark}
+                                aria-hidden="true"
+                              />
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            )}
-          </article>
+              )}
+            </div>
+          </li>
         );
       })}
-    </div>
+    </ol>
   );
 }

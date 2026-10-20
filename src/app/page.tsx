@@ -27,9 +27,6 @@ export default function Home() {
       {/* ── HERO ──────────────────────────────────────────────── */}
       <section className="hero container" aria-labelledby="hero-title">
         <div className="hero-copy">
-          <p className="kicker hero-eyebrow" data-reveal data-reveal-delay="0">
-            <SparkIcon /> Personal Portfolio
-          </p>
           <h1 id="hero-title" data-reveal data-reveal-delay="80">
             {profile.name}
           </h1>

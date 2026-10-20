@@ -1,444 +1,202 @@
+/* ══════════════════════════════════════════════════════════════
+   Editorial experience list — black theme.
+   Two columns (period | content) separated by hairline dividers,
+   no large bordered cards. Static (no JS); responsibilities shown
+   directly; documentation as a clean responsive image grid.
+   ══════════════════════════════════════════════════════════════ */
+
 .list {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+}
+
+/* Each experience: date column + content column.
+   A thin solid divider sits ABOVE each entry (except the first), so it only
+   separates one experience from the next — never the internal skills,
+   documentation heading, or photos. More vertical breathing room between
+   entries keeps the list editorial rather than card-like. */
+.entry {
   display: grid;
-  gap: 14px;
-  margin-top: 22px;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 28px 40px;
+  padding: 48px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.entry:first-child {
+  padding-top: 8px;
+  border-top: none;
 }
 
-.card {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(26, 42, 68, 0.82), rgba(18, 30, 50, 0.86));
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-  /* CSS-only entrance so the card is never controlled by the imperative
-     [data-reveal] system (whose class React would strip on re-render). */
-  animation: cardIn 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+/* ── Left column: period / meta ──────────────────────────────── */
+.meta {
+  padding-top: 4px;
 }
-
-@keyframes cardIn {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.card:hover,
-.expanded {
-  border-color: rgba(96, 165, 250, 0.38);
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.2), 0 0 24px rgba(96, 165, 250, 0.06);
-}
-
-.card:hover {
-  transform: translateY(-2px);
-}
-
-/* Subtle accent rail on the expanded card for depth */
-.expanded::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--accent), transparent);
-  opacity: 0.55;
-}
-
-.trigger {
-  display: grid;
-  width: 100%;
-  grid-template-columns: 42px minmax(0, 1fr) 38px;
-  align-items: center;
-  gap: 16px;
-  border: 0;
-  padding: 21px 24px;
-  background: transparent;
-  color: var(--foreground);
-  cursor: pointer;
-  font: inherit;
-  text-align: left;
-}
-
-.trigger:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: -4px;
-  border-radius: inherit;
-}
-
-.index {
-  align-self: stretch;
-  display: grid;
-  place-items: center;
-  border-right: 1px solid var(--line);
-  color: var(--accent);
+.period {
+  display: inline-block;
+  color: var(--muted);
   font-family: var(--font-geist-mono), monospace;
-  font-size: 11px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
 }
 
-.heading {
-  display: grid;
-  gap: 5px;
+/* ── Right column: content ───────────────────────────────────── */
+.content {
   min-width: 0;
 }
-
-.period {
-  color: var(--accent);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .role {
-  overflow-wrap: anywhere;
-  font-size: 19px;
-  font-weight: 500;
-  line-height: 1.35;
-}
-
-.company {
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.indicator {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  color: var(--muted);
-  font-size: 19px;
-  line-height: 1;
-  transition: color 220ms ease, border-color 220ms ease, background 220ms ease;
-}
-
-.trigger:hover .indicator,
-.expanded .indicator {
-  border-color: rgba(96, 165, 250, 0.35);
-  background: rgba(96, 165, 250, 0.08);
-  color: var(--accent);
-}
-
-/* ── Expanded panel ──────────────────────────────────────────────
-   The panel is conditionally rendered in the DOM (only when open), so
-   it is never a "hidden but present" element. The header (.trigger) is
-   always rendered above it and stays visible. The animation below only
-   runs the content in on mount; it never controls whether content exists. */
-.panel {
-  border-top: 1px solid var(--line);
-  padding: 22px 24px 24px 82px;
-  animation: panelIn 320ms cubic-bezier(0.2, 0.75, 0.25, 1);
-}
-
-@keyframes panelIn {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ── Sections (Responsibilities / Dokumentasi) ───────────────── */
-.section {
-  margin-bottom: 26px;
-}
-
-.subheading {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin: 0 0 12px;
+  margin: 0;
   color: var(--foreground);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 19px;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.company {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 14px;
 }
 
-.subheadingBar {
-  width: 14px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--accent);
-  box-shadow: 0 0 8px rgba(96, 165, 250, 0.55);
-}
-
+/* Responsibilities shown directly as a quiet list */
 .responsibilities {
-  display: grid;
-  gap: 8px;
-  list-style: none;
-  margin: 0;
+  margin: 18px 0 0;
   padding-left: 18px;
+  display: grid;
+  gap: 9px;
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.75;
+  max-width: 640px;
+}
+.responsibilities li::marker {
+  color: #5a5a5f;
 }
 
-.responsibilities li {
-  position: relative;
-}
-
-.responsibilities li::before {
-  content: "-";
-  position: absolute;
-  left: -14px;
-  color: var(--accent);
-}
-
-.emptyNote {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-  font-style: italic;
-}
-
-/* ── Skill / attribute tags (blue pills, match existing theme) ── */
+/* Skills — restrained text pills, not loud badges */
 .skillTags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 0;
+  margin: 20px 0 0;
   padding: 0;
   list-style: none;
 }
-
 .skillTag {
   display: inline-flex;
   align-items: center;
-  padding: 6px 12px;
-  border: 1px solid rgba(96, 165, 250, 0.3);
-  border-radius: 999px;
-  background: rgba(96, 165, 250, 0.08);
-  color: var(--accent);
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--muted);
   font-size: 12px;
   line-height: 1;
   white-space: nowrap;
-  transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+  transition: color var(--transition-base), border-color var(--transition-base);
 }
-
 .skillTag:hover {
-  background: rgba(96, 165, 250, 0.15);
-  border-color: rgba(96, 165, 250, 0.5);
-  transform: translateY(-1px);
+  color: var(--foreground);
+  border-color: #3a3a3d;
 }
 
-/* ── Dokumentasi gallery: 3 in a row on desktop, reflow on mobile ── */
+/* ── Documentation: editorial image grid (no card container) ── */
+.documentation {
+  margin-top: 26px;
+}
+.docLabel {
+  margin: 0 0 12px;
+  color: #6b6b70;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
+  max-width: 640px;
 }
-
 .photoFrame {
   position: relative;
-  overflow: hidden;
   aspect-ratio: 4 / 3;
-  border: 1px solid rgba(148, 163, 184, 0.16);
-  border-radius: 10px;
-  background: var(--card-bg);
+  overflow: hidden;
+  border-radius: 4px;
+  background: #0f0f10;
+  border: 1px solid var(--line);
 }
-
 .photoImage {
   object-fit: cover;
-  transition: transform 360ms ease;
+  transition: transform 0.5s ease, opacity var(--transition-base);
 }
-
 .photoFrame:hover .photoImage {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
-/* Placeholder treated as an intentional UI component, not an empty box */
+/* Minimal placeholder — a quiet image glyph, not a decorative box */
 .photoPlaceholder {
   position: absolute;
   inset: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  border: 1px dashed rgba(148, 163, 184, 0.26);
-  border-radius: 10px;
-  background:
-    linear-gradient(135deg, rgba(96, 165, 250, 0.06), transparent 55%),
-    repeating-linear-gradient(135deg, rgba(148, 163, 184, 0.03) 0 1px, transparent 1px 14px),
-    rgba(8, 15, 27, 0.34);
-  color: var(--muted);
-  transition: border-color 220ms ease, background 220ms ease, transform 220ms ease;
+  background: #0d0d0e;
 }
-
-.photoFrame:hover .photoPlaceholder {
-  border-color: rgba(96, 165, 250, 0.4);
-  background:
-    linear-gradient(135deg, rgba(96, 165, 250, 0.1), transparent 55%),
-    rgba(8, 15, 27, 0.34);
-  transform: translateY(-2px);
-}
-
 .placeholderMark {
-  width: 30px;
-  height: 23px;
-  border: 1px solid rgba(148, 163, 184, 0.5);
-  border-radius: 5px;
+  width: 26px;
+  height: 20px;
+  border: 1px solid #343438;
+  border-radius: 3px;
   position: relative;
 }
-
 .placeholderMark::before {
+  content: "";
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: 3px;
+  right: 3px;
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: rgba(148, 163, 184, 0.6);
-  content: "";
+  background: #343438;
 }
-
 .placeholderMark::after {
-  position: absolute;
-  right: 3px;
-  bottom: 3px;
-  left: 3px;
-  height: 9px;
-  background: linear-gradient(145deg, transparent 43%, rgba(148, 163, 184, 0.5) 45% 55%, transparent 57%);
   content: "";
-}
-
-.placeholderText {
-  font-size: 11px;
-  letter-spacing: 0.04em;
-}
-
-/* ── Back / Close ────────────────────────────────────────────── */
-.panelFooter {
-  margin-top: 4px;
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
-}
-
-.backButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  padding: 9px 15px;
-  background: rgba(22, 36, 60, 0.5);
-  color: var(--muted);
-  font: inherit;
-  font-size: 12px;
-  cursor: pointer;
-  transition: color 220ms ease, border-color 220ms ease, background 220ms ease, transform 220ms ease;
-}
-
-.backButton:hover {
-  color: var(--accent);
-  border-color: rgba(96, 165, 250, 0.4);
-  background: rgba(96, 165, 250, 0.06);
-  transform: translateX(-3px);
-}
-
-.backButton:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  left: 2px;
+  height: 7px;
+  background: linear-gradient(145deg, transparent 42%, #343438 44% 56%, transparent 58%);
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
-@media (max-width: 700px) {
+@media (max-width: 720px) {
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 36px 0;
+  }
+  .meta {
+    padding-top: 0;
+  }
   .gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 640px) {
-  .list {
-    gap: 11px;
-  }
-
-  .trigger {
-    grid-template-columns: 32px minmax(0, 1fr) 34px;
-    gap: 11px;
-    padding: 18px 15px;
-  }
-
-  .role {
-    font-size: 17px;
-  }
-
-  .panel {
-    padding: 18px 15px 18px;
-  }
-}
-
-@media (max-width: 460px) {
+@media (max-width: 420px) {
   .gallery {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card,
-  .indicator,
   .photoImage,
-  .photoPlaceholder,
-  .backButton {
-    transition: none;
-  }
-
-  .panel,
-  .card {
-    animation: none;
-  }
-
   .skillTag {
     transition: none;
   }
-
-  .card:hover,
-  .photoFrame:hover .photoImage,
-  .photoFrame:hover .photoPlaceholder,
-  .backButton:hover,
-  .skillTag:hover {
+  .photoFrame:hover .photoImage {
     transform: none;
-  }
-}
-
-/* ══════════════════════════════════════════════════════════════
-   Experience polish (additive, CSS-only — no logic/markup changes).
-   Keeps expand/collapse, header visibility, +/−, one-open behavior.
-   ══════════════════════════════════════════════════════════════ */
-
-/* Stronger (but still soft) blue glow on the active/expanded card */
-.expanded {
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.25), 0 0 30px rgba(96, 165, 250, 0.12);
-}
-
-/* Highlight the active experience number + title for clearer hierarchy */
-.expanded .index {
-  color: #93c5fd;
-  text-shadow: 0 0 10px rgba(96, 165, 250, 0.45);
-}
-.expanded .role {
-  color: #ffffff;
-}
-
-/* Subtle lift/glow on the +/− indicator when hovering the whole card */
-.card:hover .indicator {
-  box-shadow: 0 0 14px rgba(96, 165, 250, 0.18);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .expanded,
-  .expanded .index {
-    text-shadow: none;
   }
 }
