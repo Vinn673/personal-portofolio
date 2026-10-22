@@ -28,6 +28,9 @@ export const skillCategories: SkillCategory[] = [
       "Hugging Face",
       "Figma",
       "Canva",
+      "Jira",
+      "Trello",
+      "Notion",
     ],
   },
 ];
